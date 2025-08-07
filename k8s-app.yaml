@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: user-app
+  name: user-apps
 
 ---
 
@@ -9,7 +9,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-svc-deployment
-  namespace: user-app
+  namespace: user-apps
 spec:
   selector:
     matchLabels:
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: user-app-container
-          image: 'rahulsolankis/user-service:1.0.0-1'
+          image: 'rahulsolankis/user-service:1.0.0-6'
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9191
@@ -33,7 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: userapp-service
-  namespace: user-app
+  namespace: user-apps
 spec:
   selector:
     app: spring-boot-k8s
